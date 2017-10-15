@@ -44,7 +44,7 @@ export class ContactService {
                  .catch(this.handleError);
     }
 
-    clear(): Promise<Contact> {
+    clear(): void {
       return this.http.get("/api/contacts/clear",function (req, res) {
         alert("ololo")
       }).toPromise()
