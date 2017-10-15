@@ -66,6 +66,10 @@ export class ContactListComponent implements OnInit {
     return this.contacts;
   }
 
+  clearAll(){
+    this.contactService.clear();
+  }
+
   addContact = (contact: Contact) => {
     this.contacts.push(contact);
     this.selectContact(contact);
