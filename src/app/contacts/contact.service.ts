@@ -44,6 +44,13 @@ export class ContactService {
                  .catch(this.handleError);
     }
 
+    clear(): Promise<Contact> {
+      var putUrl = this.contactsUrl + '/clear';
+      return this.http.clear(putUrl,function (req, res) {
+        alert("ololo")
+      }).toPromise()
+    }
+
     private handleError (error: any): Promise<any> {
       let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';
