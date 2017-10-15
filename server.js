@@ -117,13 +117,3 @@ app.delete("/api/contacts/:id", function(req, res) {
     }
   });
 });
-
-app.clear("/api/contacts/clear", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).remove(function(err, result) {
-    if (err) {
-      handleError(res, err.message, "Failed to delete contact");
-    } else {
-      res.status(200).json("ok");
-    }
-  });
-});
