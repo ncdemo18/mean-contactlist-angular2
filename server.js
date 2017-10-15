@@ -119,10 +119,6 @@ app.delete("/api/contacts/:id", function(req, res) {
 });
 
 app.get("/api/contacts/clear", function(req, res) {
-  db.dropCollection(CONTACTS_COLLECTION, function(err, delOK) {
-    if (err) throw err;
-  });
-  db.createCollection(CONTACTS_COLLECTION, function(err, res) {
-    if (err) throw err;
-  });
+  db.collection(CONTACTS_COLLECTION).remove({},function (err, removed) {
+  })
 });
