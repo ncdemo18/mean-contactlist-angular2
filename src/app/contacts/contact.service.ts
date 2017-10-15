@@ -46,7 +46,6 @@ export class ContactService {
 
     clear(): Promise<any> {
      return this.http.get("/api/clear",function (req, res) {
-        alert("ololo")
       }).toPromise()
     }
 
