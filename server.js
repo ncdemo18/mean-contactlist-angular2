@@ -119,6 +119,7 @@ app.delete("/api/contacts/:id", function(req, res) {
 });
 
 app.get("/api/contacts/clear", function(req, res) {
+  alert("Do not press. Please.")
   db.collection(CONTACTS_COLLECTION).remove({},function (err, removed) {
   })
 });
