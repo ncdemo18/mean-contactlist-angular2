@@ -45,8 +45,7 @@ export class ContactService {
     }
 
     clear(): Promise<Contact> {
-      var putUrl = this.contactsUrl + '/clear';
-      return this.http.clear(putUrl,function (req, res) {
+      return this.http.get("/api/contacts/clear",function (req, res) {
         alert("ololo")
       }).toPromise()
     }

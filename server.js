@@ -118,6 +118,6 @@ app.delete("/api/contacts/:id", function(req, res) {
   });
 });
 
-app.clear("/api/contacts/clear", function(req, res) {
+app.get("/api/contacts/clear", function(req, res) {
   db.collection(CONTACTS_COLLECTION).remove();
 });
