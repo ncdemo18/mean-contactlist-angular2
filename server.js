@@ -147,6 +147,8 @@ app.get("/api/dashboard/next/push", function (req, res) {
   db.collection("pages").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
+    }else{
+      res.status(200);
     }
   });
 });
