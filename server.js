@@ -6,7 +6,7 @@ var ObjectID = mongodb.ObjectID;
 var CONTACTS_COLLECTION = "contacts";
 
 var app = express();
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
@@ -51,8 +51,8 @@ function handleError(res, reason, message, code) {
  *    POST: creates a new contact
  */
 
-app.get("/api/contacts", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
+app.get("/api/contacts", function (req, res) {
+  db.collection(CONTACTS_COLLECTION).find({}).toArray(function (err, docs) {
     if (err) {
       handleError(res, err.message, "Failed to get contacts.");
     } else {
@@ -61,7 +61,7 @@ app.get("/api/contacts", function(req, res) {
   });
 });
 
-app.post("/api/contacts", function(req, res) {
+app.post("/api/contacts", function (req, res) {
   var newContact = req.body;
   newContact.createDate = new Date();
 
@@ -69,7 +69,7 @@ app.post("/api/contacts", function(req, res) {
     handleError(res, "Invalid user input", newContact, 400);
   }
 
-  db.collection(CONTACTS_COLLECTION).insertOne(newContact, function(err, doc) {
+  db.collection(CONTACTS_COLLECTION).insertOne(newContact, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to create new contact.");
     } else {
@@ -84,8 +84,8 @@ app.post("/api/contacts", function(req, res) {
  *    DELETE: deletes contact by id
  */
 
-app.get("/api/contacts/:id", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).findOne({ _id: new ObjectID(req.params.id) }, function(err, doc) {
+app.get("/api/contacts/:id", function (req, res) {
+  db.collection(CONTACTS_COLLECTION).findOne({_id: new ObjectID(req.params.id)}, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to get contact");
     } else {
@@ -94,11 +94,11 @@ app.get("/api/contacts/:id", function(req, res) {
   });
 });
 
-app.put("/api/contacts/:id", function(req, res) {
+app.put("/api/contacts/:id", function (req, res) {
   var updateDoc = req.body;
   delete updateDoc._id;
 
-  db.collection(CONTACTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc, function(err, doc) {
+  db.collection(CONTACTS_COLLECTION).updateOne({_id: new ObjectID(req.params.id)}, updateDoc, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to update contact");
     } else {
@@ -108,8 +108,8 @@ app.put("/api/contacts/:id", function(req, res) {
   });
 });
 
-app.delete("/api/contacts/:id", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function(err, result) {
+app.delete("/api/contacts/:id", function (req, res) {
+  db.collection(CONTACTS_COLLECTION).deleteOne({_id: new ObjectID(req.params.id)}, function (err, result) {
     if (err) {
       handleError(res, err.message, "Failed to delete contact");
     } else {
@@ -118,24 +118,25 @@ app.delete("/api/contacts/:id", function(req, res) {
   });
 });
 
-app.get("/api/clear", function(req, res) {
-  db.collection(CONTACTS_COLLECTION).remove({},function (err, removed) {
+app.get("/api/clear", function (req, res) {
+  db.collection(CONTACTS_COLLECTION).remove({}, function (err, removed) {
   })
 });
 
-app.get("/api/dashboard/next", function(req, res) {
-  db.collection("pages").findOne({ "key":"yes" }, function(err, doc) {
+app.get("/api/dashboard/next", function (req, res) {
+  db.collection("pages").findOne({"key": "yes"}, function (err, doc) {
     if (err) {
-      handleError(res, err.message, "Kay equals NO");
+      handleError(res, err.message, "Key equals NO");
     } else {
+      if (doc.key === "yes") {
+        db.collection("pages").updateOne({_id: doc.id}, {$set: {"key": "no"}}, function (err, docUpdate) {
+          if (err) {
+            handleError(res, err.message, "Failed to create new key.");
+          }
+        });
+      }
       res.status(200).json(doc);
     }
   });
-  // db.collection("pages").insertOne({"key": "yes"}, function(err, doc) {
-  //   if (err) {
-  //     handleError(res, err.message, "Failed to create new key.");
-  //   } else {
-  //     res.status(201).json(doc.ops[0]);
-  //   }
-  // });
+
 });
