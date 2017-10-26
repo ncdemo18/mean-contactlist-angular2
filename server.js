@@ -128,15 +128,15 @@ app.get("/api/dashboard/next", function (req, res) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
     } else {
-      // if(doc._id!==null || doc._id!==undefined) {
-      //   if (doc.key === "yes") {
-      //     db.collection("pages").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
-      //       if (err) {
-      //         handleError(res, err.message, "Failed to create new key.");
-      //       }
-      //     });
-      //   }
-      // }
+      if(doc!==null) {
+        if (doc.key === "yes") {
+          db.collection("pages").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
+            if (err) {
+              handleError(res, err.message, "Failed to create new key.");
+            }
+          });
+        }
+      }
       res.status(200).json(doc);
     }
   });
