@@ -141,10 +141,10 @@ app.get("/api/dashboard/next", function (req, res) {
 });
 
 
-app.get("/api/dashboard/next/push", function (req, res) {
-  db.collection("pages").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
-    if (err) {
-      handleError(res, err.message, "Failed to create new key.");
-    }
-  });
-});
+// app.get("/api/dashboard/next/push", function (req, res) {
+//   db.collection("pages").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
+//     if (err) {
+//       handleError(res, err.message, "Failed to create new key.");
+//     }
+//   });
+// });
