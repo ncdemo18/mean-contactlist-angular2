@@ -148,7 +148,7 @@ app.get("/api/dashboard/next/push", function (req, res) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
     }else{
-      res.status(200);
+      res.status(200).json(docUpdate);
     }
   });
 });
