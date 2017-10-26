@@ -124,11 +124,18 @@ app.get("/api/clear", function(req, res) {
 });
 
 app.get("/api/dashboard/next", function(req, res) {
-  db.collection("pages").insertOne({"key": "yes"}, function(err, doc) {
+  db.collection("pages").findOne({ "key":"yes" }, function(err, doc) {
     if (err) {
-      handleError(res, err.message, "Failed to create new contact.");
+      handleError(res, err.message, "Kay equals NO");
     } else {
-      res.status(201).json(doc.ops[0]);
+      res.status(200).json(doc);
     }
   });
+  // db.collection("pages").insertOne({"key": "yes"}, function(err, doc) {
+  //   if (err) {
+  //     handleError(res, err.message, "Failed to create new key.");
+  //   } else {
+  //     res.status(201).json(doc.ops[0]);
+  //   }
+  // });
 });
