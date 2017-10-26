@@ -122,3 +122,7 @@ app.get("/api/clear", function(req, res) {
   db.collection(CONTACTS_COLLECTION).remove({},function (err, removed) {
   })
 });
+
+app.get("/api/dashboard/next", function(req, res) {
+  res.status(200).json("yes");
+});
