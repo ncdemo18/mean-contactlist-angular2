@@ -37,6 +37,10 @@ export class ContactDetailsComponent {
     this.contactService.clear();
   }
 
+  nextStep(): void {
+    this.contactService.nextStep();
+  }
+
   deleteContact(contactId: String): void {
     this.contactService.deleteContact(contactId).then((deletedContactId: String) => {
       this.deleteHandler(deletedContactId);

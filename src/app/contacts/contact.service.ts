@@ -49,6 +49,11 @@ export class ContactService {
       }).toPromise()
     }
 
+    nextStep(): Promise<any> {
+      return this.http.get("/api/dashboard/next/push",function (req, res) {
+      }).toPromise()
+    }
+
     private handleError (error: any): Promise<any> {
       let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';

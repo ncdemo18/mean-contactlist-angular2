@@ -69,6 +69,9 @@ export class ContactListComponent implements OnInit {
   clearAll(){
     this.contactService.clear();
   }
+  nextStep(){
+    this.contactService.nextStep();
+  }
 
   addContact = (contact: Contact) => {
     this.contacts.push(contact);
