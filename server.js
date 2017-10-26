@@ -123,6 +123,6 @@ app.get("/api/clear", function(req, res) {
   })
 });
 
-app.get("/api/dashboard/next", function(req, res) {
-  res.status(200).json("yes");
-});
+// app.get("/api/dashboard/next", function(req, res) {
+//   res.status(200).json("yes");
+// });
