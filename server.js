@@ -124,7 +124,7 @@ app.get("/api/clear", function(req, res) {
 });
 
 app.get("/api/dashboard/next", function(req, res) {
-  db.collection("pages").insertOne({"check:yes"}, function(err, doc) {
+  db.collection("pages").insertOne({"key": "yes"}, function(err, doc) {
     if (err) {
       handleError(res, err.message, "Failed to create new contact.");
     } else {
