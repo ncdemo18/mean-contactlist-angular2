@@ -128,7 +128,7 @@ app.get("/api/dashboard/next", function (req, res) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
     } else {
-      if (doc !== null) {
+      if(doc!==null) {
         if (doc.key === "yes") {
           db.collection("pages").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
             if (err) {
@@ -147,7 +147,7 @@ app.get("/api/dashboard/next/push", function (req, res) {
   db.collection("pages").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
-    } else {
+    }else{
       res.status(200).json(docUpdate);
     }
   });
