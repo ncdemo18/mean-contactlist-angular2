@@ -154,7 +154,7 @@ app.get("/api/dashboard/next/push", function (req, res) {
 });
 
 app.get("/api/dashboard/step/push/:idStep", function (req, res) {
-  db.collection("steps").findOneAndUpdate({"key": "steps"}, {"value": req.params.idStep,"changed":"yes"}, function (err, docUpdate) {
+  db.collection("steps").findOneAndUpdate({"key": "steps"}, {"key": "steps","value": req.params.idStep,"changed":"yes"}, function (err, docUpdate) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
     } else {
@@ -168,7 +168,7 @@ app.get("/api/dashboard/step/get", function (req, res) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
     } else {
-      db.collection("steps").findOneAndUpdate({"key": "steps"}, {"changed":"no"}, function (err, docUpdate) {});
+      db.collection("steps").findOneAndUpdate({"key": "steps"}, {"key": "steps","value": doc.value,"changed":"no"}, function (err, docUpdate) {});
       res.status(200).json(doc);
     }
   });
