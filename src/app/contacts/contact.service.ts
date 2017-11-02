@@ -54,6 +54,11 @@ export class ContactService {
       }).toPromise()
     }
 
+    openStep(step): Promise<any> {
+      return this.http.get("/api/dashboard/step/push/"+step,function (req, res) {
+      }).toPromise()
+    }
+
     private handleError (error: any): Promise<any> {
       let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';

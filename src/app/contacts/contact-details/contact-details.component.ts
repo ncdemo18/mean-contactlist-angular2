@@ -40,6 +40,9 @@ export class ContactDetailsComponent {
   nextStep(): void {
     this.contactService.nextStep();
   }
+  openStep(step): void {
+    this.contactService.openStep(step);
+  }
 
   deleteContact(contactId: String): void {
     this.contactService.deleteContact(contactId).then((deletedContactId: String) => {
