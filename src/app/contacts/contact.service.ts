@@ -59,6 +59,16 @@ export class ContactService {
       }).toPromise()
     }
 
+    setLowQuality(): Promise<any> {
+      return this.http.get("/api/dashboard/video/setLow",function (req, res) {
+      }).toPromise()
+    }
+
+    setHdQuality(): Promise<any> {
+      return this.http.get("/api/dashboard/video/setHd",function (req, res) {
+      }).toPromise()
+    }
+
     private handleError (error: any): Promise<any> {
       let errMsg = (error.message) ? error.message :
       error.status ? `${error.status} - ${error.statusText}` : 'Server error';

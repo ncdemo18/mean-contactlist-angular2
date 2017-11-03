@@ -128,7 +128,7 @@ app.get("/api/dashboard/next", function (req, res) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
     } else {
-      if(doc!==null) {
+      if (doc !== null) {
         if (doc.key === "yes") {
           db.collection("pages").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
             if (err) {
@@ -147,14 +147,18 @@ app.get("/api/dashboard/next/push", function (req, res) {
   db.collection("pages").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
-    }else{
+    } else {
       res.status(200).json(docUpdate);
     }
   });
 });
 
 app.get("/api/dashboard/step/push/:idStep", function (req, res) {
-  db.collection("steps").findOneAndUpdate({"key": "steps"}, {"key": "steps","value": req.params.idStep,"changed":"yes"}, function (err, docUpdate) {
+  db.collection("steps").findOneAndUpdate({"key": "steps"}, {
+    "key": "steps",
+    "value": req.params.idStep,
+    "changed": "yes"
+  }, function (err, docUpdate) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
     } else {
@@ -168,8 +172,48 @@ app.get("/api/dashboard/step/get", function (req, res) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
     } else {
-      db.collection("steps").findOneAndUpdate({"key": "steps"}, {"key": "steps","value": doc.value,"changed":"no"}, function (err, docUpdate) {});
+      db.collection("steps").findOneAndUpdate({"key": "steps"}, {
+        "key": "steps",
+        "value": doc.value,
+        "changed": "no"
+      }, function (err, docUpdate) {
+      });
       res.status(200).json(doc);
     }
   });
+});
+
+app.get("/api/dashboard/video/setLow", function (req, res) {
+  db.collection("video").findOneAndUpdate({"key": "quality"}, {
+    "key": "quality",
+    "value": "tiny",
+    "changed": "yes"
+  }, function (err, docUpdate) {
+  });
+  res.status(200).json(docUpdate);
+});
+app.get("/api/dashboard/video/setHd", function (req, res) {
+  db.collection("video").findOneAndUpdate({"key": "quality"}, {
+    "key": "quality",
+    "value": "hd",
+    "changed": "yes"
+  }, function (err, docUpdate) {
+  });
+  res.status(200).json(docUpdate);
+});
+
+app.get("/api/dashboard/video/getQuality", function (req, res) {
+  db.collection("video").findOne({"key": "quality"}, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Key equals NO");
+    } else {
+      db.collection("video").findOneAndUpdate({"key": "quality"}, {
+        "key": "quality",
+        "value": docUpdate.value,
+        "changed": "no"
+      }, function (err, docUpdate) {
+      });
+    }
+  });
+  res.status(200).json(docUpdate);
 });

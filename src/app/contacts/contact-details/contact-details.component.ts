@@ -44,6 +44,14 @@ export class ContactDetailsComponent {
     this.contactService.openStep(step);
   }
 
+
+  setLowQuality(){
+    this.contactService.setLowQuality();
+  }
+  setHdQuality(){
+    this.contactService.setHdQuality();
+  }
+
   deleteContact(contactId: String): void {
     this.contactService.deleteContact(contactId).then((deletedContactId: String) => {
       this.deleteHandler(deletedContactId);

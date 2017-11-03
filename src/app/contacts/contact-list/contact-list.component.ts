@@ -76,6 +76,12 @@ export class ContactListComponent implements OnInit {
   openStep(step){
     this.contactService.openStep(step);
   }
+  setLowQuality(){
+    this.contactService.setLowQuality();
+  }
+  setHdQuality(){
+    this.contactService.setHdQuality();
+  }
 
   addContact = (contact: Contact) => {
     this.contacts.push(contact);
