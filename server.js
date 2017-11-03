@@ -189,8 +189,12 @@ app.get("/api/dashboard/video/setLow", function (req, res) {
     "value": "tiny",
     "changed": "yes"
   }, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
   });
-  res.status(200).json(docUpdate);
 });
 app.get("/api/dashboard/video/setHd", function (req, res) {
   db.collection("video").findOneAndUpdate({"key": "quality"}, {
@@ -198,8 +202,12 @@ app.get("/api/dashboard/video/setHd", function (req, res) {
     "value": "hd",
     "changed": "yes"
   }, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
   });
-  res.status(200).json(docUpdate);
 });
 
 app.get("/api/dashboard/video/getQuality", function (req, res) {
@@ -212,8 +220,12 @@ app.get("/api/dashboard/video/getQuality", function (req, res) {
         "value": docUpdate.value,
         "changed": "no"
       }, function (err, docUpdate) {
+        if (err) {
+          handleError(res, err.message, "Failed to create new key.");
+        } else {
+          res.status(200).json(docUpdate);
+        }
       });
     }
   });
-  res.status(200).json(docUpdate);
 });
