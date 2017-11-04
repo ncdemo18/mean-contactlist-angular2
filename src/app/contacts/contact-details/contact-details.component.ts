@@ -37,13 +37,21 @@ export class ContactDetailsComponent {
     this.contactService.clear();
   }
 
-  nextStep(): void {
-    this.contactService.nextStep();
-  }
-  openStep(step): void {
-    this.contactService.openStep(step);
+  nextStepSam(): void {
+    this.contactService.nextStepSam();
   }
 
+  nextStepRicky(): void {
+    this.contactService.nextStepRicky();
+  }
+
+  openStepRicky(step): void {
+    this.contactService.openStepRicky(step);
+  }
+
+  openStepSam(step): void {
+    this.contactService.openStepSam(step);
+  }
 
   setLowQuality(){
     this.contactService.setLowQuality();

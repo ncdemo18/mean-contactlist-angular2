@@ -143,8 +143,8 @@ app.get("/api/dashboard/next", function (req, res) {
 });
 
 
-app.get("/api/dashboard/next/push", function (req, res) {
-  db.collection("pages").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
+app.get("/api/dashboard/next/push/Sam", function (req, res) {
+  db.collection("pages_sam").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
     } else {
@@ -153,8 +153,8 @@ app.get("/api/dashboard/next/push", function (req, res) {
   });
 });
 
-app.get("/api/dashboard/step/push/:idStep", function (req, res) {
-  db.collection("steps").findOneAndUpdate({"key": "steps"}, {
+app.get("/api/dashboard/step/push/Sam/:idStep", function (req, res) {
+  db.collection("steps_sam").findOneAndUpdate({"key": "steps"}, {
     "key": "steps",
     "value": req.params.idStep,
     "changed": "yes"
@@ -167,8 +167,47 @@ app.get("/api/dashboard/step/push/:idStep", function (req, res) {
   });
 });
 
-app.get("/api/dashboard/step/get", function (req, res) {
-  db.collection("steps").findOne({"key": "steps"}, function (err, doc) {
+app.get("/api/dashboard/next/push/Ricky", function (req, res) {
+  db.collection("pages_ricky").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+
+app.get("/api/dashboard/step/push/Ricky/:idStep", function (req, res) {
+  db.collection("steps_ricky").findOneAndUpdate({"key": "steps"}, {
+    "key": "steps",
+    "value": req.params.idStep,
+    "changed": "yes"
+  }, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+
+app.get("/api/dashboard/step/get/Sam", function (req, res) {
+  db.collection("steps_sam").findOne({"key": "steps"}, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Key equals NO");
+    } else {
+      db.collection("steps").findOneAndUpdate({"key": "steps"}, {
+        "key": "steps",
+        "value": doc.value,
+        "changed": "no"
+      }, function (err, docUpdate) {
+      });
+      res.status(200).json(doc);
+    }
+  });
+});
+app.get("/api/dashboard/step/get/Ricky", function (req, res) {
+  db.collection("steps_ricky").findOne({"key": "steps"}, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
     } else {

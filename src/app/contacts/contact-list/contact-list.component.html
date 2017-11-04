@@ -3,22 +3,34 @@
     <h2>All Words</h2>
     <ul class="list-group">
       <li class="list-group-item"
-        *ngFor="let contact of contacts"
-        (click)="selectContact(contact)"
-        [class.active]="contact === selectedContact">
+          *ngFor="let contact of contacts"
+          (click)="selectContact(contact)"
+          [class.active]="contact === selectedContact">
         {{contact.name}}
       </li>
     </ul>
     <button class="btn btn-warning" (click)="createNewContact()">New</button>
     <button class="btn btn-error" (click)="clearAll()">Clear</button>
-    <button class="btn btn-success" (click)="nextStep()">Next Step</button>
-    <button class="btn btn-info" (click)="openStep(0)">Step 1</button>
-    <button class="btn btn-info" (click)="openStep(1)">Step 2</button>
-    <button class="btn btn-info" (click)="openStep(2)">Step 3</button>
-    <button class="btn btn-info" (click)="openStep(3)">Step 4</button>
-    <button class="btn btn-info" (click)="openStep(4)">Step 5</button>
-    <button class="btn btn-info" (click)="setLowQuality()">Low Quality</button>
-    <button class="btn btn-info" (click)="setHdQuality()">HD Quality</button>
+    <div>
+      <div>
+        <button class="btn btn-success" (click)="nextStepRicky()">Next Step Ricky</button>
+        <button class="btn btn-info" (click)="openStepRicky(0)">Ricky Step 1</button>
+        <button class="btn btn-info" (click)="openStepRicky(1)">Ricky Step 2</button>
+        <button class="btn btn-info" (click)="openStepRicky(2)">Ricky Step 3</button>
+        <button class="btn btn-info" (click)="openStepRicky(3)">Ricky Step 4</button>
+        <button class="btn btn-info" (click)="openStepRicky(4)">Ricky Step 5</button>
+      </div>
+      <div>
+        <button class="btn btn-success" (click)="nextStepSam()">Next Step Sam</button>
+        <button class="btn btn-info" (click)="openStepSam(0)">Sam Step 1</button>
+        <button class="btn btn-info" (click)="openStepSam(1)">Sam Step 2</button>
+        <button class="btn btn-info" (click)="openStepSam(2)">Sam Step 3</button>
+        <button class="btn btn-info" (click)="openStepSam(3)">Sam Step 4</button>
+        <button class="btn btn-info" (click)="openStepSam(4)">Sam Step 5</button>
+      </div>
+      <button class="btn btn-info" (click)="setLowQuality()">Low Quality</button>
+      <button class="btn btn-info" (click)="setHdQuality()">HD Quality</button>
+    </div>
   </div>
   <div class="col-md-5 col-md-offset-2">
     <contact-details

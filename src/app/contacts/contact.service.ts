@@ -49,13 +49,24 @@ export class ContactService {
       }).toPromise()
     }
 
-    nextStep(): Promise<any> {
-      return this.http.get("/api/dashboard/next/push",function (req, res) {
+    nextStepSam(): Promise<any> {
+      return this.http.get("/api/dashboard/next/push/Sam",function (req, res) {
       }).toPromise()
     }
 
-    openStep(step): Promise<any> {
-      return this.http.get("/api/dashboard/step/push/"+step,function (req, res) {
+    openStepSam(step): Promise<any> {
+      return this.http.get("/api/dashboard/step/push/Sam"+step,function (req, res) {
+      }).toPromise()
+    }
+
+
+    nextStepRicky(): Promise<any> {
+      return this.http.get("/api/dashboard/next/push/Ricky",function (req, res) {
+      }).toPromise()
+    }
+
+    openStepRicky(step): Promise<any> {
+      return this.http.get("/api/dashboard/step/push/Ricky"+step,function (req, res) {
       }).toPromise()
     }
 

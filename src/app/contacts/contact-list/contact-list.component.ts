@@ -70,12 +70,22 @@ export class ContactListComponent implements OnInit {
     this.contactService.clear();
   }
 
-  nextStep(){
-    this.contactService.nextStep();
+  nextStepSam(): void {
+    this.contactService.nextStepSam();
   }
-  openStep(step){
-    this.contactService.openStep(step);
+
+  nextStepRicky(): void {
+    this.contactService.nextStepRicky();
   }
+
+  openStepRicky(step): void {
+    this.contactService.openStepRicky(step);
+  }
+
+  openStepSam(step): void {
+    this.contactService.openStepSam(step);
+  }
+
   setLowQuality(){
     this.contactService.setLowQuality();
   }
