@@ -130,7 +130,7 @@ app.get("/api/dashboard/next/Sam", function (req, res) {
     } else {
       if (doc !== null) {
         if (doc.key === "yes") {
-          db.collection("pages").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
+          db.collection("pages_sam").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
             if (err) {
               handleError(res, err.message, "Failed to create new key.");
             }
@@ -149,7 +149,7 @@ app.get("/api/dashboard/next/Ricky", function (req, res) {
     } else {
       if (doc !== null) {
         if (doc.key === "yes") {
-          db.collection("pages").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
+          db.collection("pages_ricky").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
             if (err) {
               handleError(res, err.message, "Failed to create new key.");
             }
@@ -215,7 +215,7 @@ app.get("/api/dashboard/step/get/Sam", function (req, res) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
     } else {
-      db.collection("steps").findOneAndUpdate({"key": "steps"}, {
+      db.collection("steps_sam").findOneAndUpdate({"key": "steps"}, {
         "key": "steps",
         "value": doc.value,
         "changed": "no"
@@ -230,7 +230,7 @@ app.get("/api/dashboard/step/get/Ricky", function (req, res) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
     } else {
-      db.collection("steps").findOneAndUpdate({"key": "steps"}, {
+      db.collection("steps_ricky").findOneAndUpdate({"key": "steps"}, {
         "key": "steps",
         "value": doc.value,
         "changed": "no"
