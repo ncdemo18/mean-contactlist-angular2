@@ -55,7 +55,7 @@ export class ContactService {
     }
 
     openStepSam(step): Promise<any> {
-      return this.http.get("/api/dashboard/step/push/Sam"+step,function (req, res) {
+      return this.http.get("/api/dashboard/step/push/Sam/"+step,function (req, res) {
       }).toPromise()
     }
 
@@ -66,7 +66,7 @@ export class ContactService {
     }
 
     openStepRicky(step): Promise<any> {
-      return this.http.get("/api/dashboard/step/push/Ricky"+step,function (req, res) {
+      return this.http.get("/api/dashboard/step/push/Ricky/"+step,function (req, res) {
       }).toPromise()
     }
 
