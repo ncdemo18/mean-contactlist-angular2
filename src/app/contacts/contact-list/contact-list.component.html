@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-10">
     <h2>All Words</h2>
     <ul class="list-group">
       <li class="list-group-item"
@@ -11,8 +11,10 @@
     </ul>
     <button class="btn btn-warning" (click)="createNewContact()">New</button>
     <button class="btn btn-error" (click)="clearAll()">Clear</button>
+    <br>
     <div>
       <div>
+        <br>
         <button class="btn btn-success" (click)="nextStepRicky()">Next Step Ricky</button>
         <button class="btn btn-info" (click)="openStepRicky(0)">Ricky Step 1</button>
         <button class="btn btn-info" (click)="openStepRicky(1)">Ricky Step 2</button>
@@ -20,6 +22,7 @@
         <button class="btn btn-info" (click)="openStepRicky(3)">Ricky Step 4</button>
         <button class="btn btn-info" (click)="openStepRicky(4)">Ricky Step 5</button>
       </div>
+      <br>
       <div>
         <button class="btn btn-success" (click)="nextStepSam()">Next Step Sam</button>
         <button class="btn btn-info" (click)="openStepSam(0)">Sam Step 1</button>
@@ -28,11 +31,12 @@
         <button class="btn btn-info" (click)="openStepSam(3)">Sam Step 4</button>
         <button class="btn btn-info" (click)="openStepSam(4)">Sam Step 5</button>
       </div>
+      <br>
       <button class="btn btn-info" (click)="setLowQuality()">Low Quality</button>
       <button class="btn btn-info" (click)="setHdQuality()">HD Quality</button>
     </div>
   </div>
-  <div class="col-md-5 col-md-offset-2">
+  <div class="col-md-2 col-md-offset-0">
     <contact-details
       [contact]="selectedContact"
       [createHandler]="addContact"
