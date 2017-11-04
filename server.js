@@ -123,8 +123,27 @@ app.get("/api/clear", function (req, res) {
   })
 });
 
-app.get("/api/dashboard/next", function (req, res) {
-  db.collection("pages").findOne({"key": "yes"}, function (err, doc) {
+app.get("/api/dashboard/next/Sam", function (req, res) {
+  db.collection("pages_sam").findOne({"key": "yes"}, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Key equals NO");
+    } else {
+      if (doc !== null) {
+        if (doc.key === "yes") {
+          db.collection("pages").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
+            if (err) {
+              handleError(res, err.message, "Failed to create new key.");
+            }
+          });
+        }
+      }
+      res.status(200).json(doc);
+    }
+  });
+});
+
+app.get("/api/dashboard/next/Ricky", function (req, res) {
+  db.collection("pages_ricky").findOne({"key": "yes"}, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
     } else {
@@ -143,7 +162,7 @@ app.get("/api/dashboard/next", function (req, res) {
 });
 
 
-app.get("/api/dashboard/next/push/Sam", function (req, res) {
+app.get("/api/dashboard/next/push/Sam/", function (req, res) {
   db.collection("pages_sam").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
@@ -167,7 +186,7 @@ app.get("/api/dashboard/step/push/Sam/:idStep", function (req, res) {
   });
 });
 
-app.get("/api/dashboard/next/push/Ricky", function (req, res) {
+app.get("/api/dashboard/next/push/Ricky/", function (req, res) {
   db.collection("pages_ricky").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
