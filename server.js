@@ -287,3 +287,41 @@ app.get("/api/dashboard/video/getQuality", function (req, res) {
     }
   });
 });
+
+app.get("/api/dashboard/footbal/manchester", function (req, res) {
+  db.collection("footbal").findOneAndUpdate({"key": "footbal"}, {
+    "key": "footbal",
+    "value": "manchester",
+    "changed": "yes"
+  }, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+
+app.get("/api/dashboard/footbal/arsenal", function (req, res) {
+  db.collection("footbal").findOneAndUpdate({"key": "footbal"}, {
+    "key": "footbal",
+    "value": "arsenal",
+    "changed": "yes"
+  }, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+
+app.get("/api/dashboard/footbal", function (req, res) {
+  db.collection("footbal").findOne({"key": "footbal"}, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Key equals NO");
+    } else {
+      res.status(200).json(doc);
+    }
+  });
+});

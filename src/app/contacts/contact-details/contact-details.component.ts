@@ -60,6 +60,13 @@ export class ContactDetailsComponent {
     this.contactService.setHdQuality();
   }
 
+  showArsenal(){
+    this.contactService.showArsenal();
+  }
+  showManchester(){
+    this.contactService.showManchester();
+  }
+
   deleteContact(contactId: String): void {
     this.contactService.deleteContact(contactId).then((deletedContactId: String) => {
       this.deleteHandler(deletedContactId);

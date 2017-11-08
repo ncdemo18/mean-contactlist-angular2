@@ -79,6 +79,15 @@ export class ContactService {
       return this.http.get("/api/dashboard/video/setHd",function (req, res) {
       }).toPromise()
     }
+    showArsenal(): Promise<any> {
+      return this.http.get("/api/dashboard/footbal/arsenal",function (req, res) {
+      }).toPromise()
+    }
+
+    showManchester(): Promise<any> {
+      return this.http.get("/api/dashboard/footbal/manchester",function (req, res) {
+      }).toPromise()
+    }
 
     private handleError (error: any): Promise<any> {
       let errMsg = (error.message) ? error.message :

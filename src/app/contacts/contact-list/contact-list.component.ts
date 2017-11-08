@@ -99,6 +99,13 @@ export class ContactListComponent implements OnInit {
     return this.contacts;
   }
 
+  showArsenal(){
+    this.contactService.showArsenal();
+  }
+  showManchester(){
+    this.contactService.showManchester();
+  }
+
   updateContact = (contact: Contact) => {
     var idx = this.getIndexOfContact(contact._id);
     if (idx !== -1) {
