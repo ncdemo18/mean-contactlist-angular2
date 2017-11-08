@@ -321,6 +321,12 @@ app.get("/api/dashboard/footbal", function (req, res) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
     } else {
+      db.collection("footbal").findOneAndUpdate({"key": "footbal"}, {
+        "key": "footbal",
+        "value": doc.value,
+        "changed": "no"
+      }, function (err, docUpdate) {
+      });
       res.status(200).json(doc);
     }
   });
