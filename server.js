@@ -365,7 +365,7 @@ app.get("/api/dashboard/footbal/score", function (req, res) {
       handleError(res, err.message, "Key equals NO");
     } else {
       db.collection("score").findOneAndUpdate({"key": "score"}, {
-        "key": "footbal",
+        "key": "score",
         "value": doc.value,
         "changed": "no"
       }, function (err, docUpdate) {
