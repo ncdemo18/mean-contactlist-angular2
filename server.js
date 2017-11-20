@@ -366,7 +366,7 @@ app.get("/api/dashboard/footbal/score", function (req, res) {
     } else {
       db.collection("score").findOneAndUpdate({"key": "score"}, {
         "key": "score",
-        "value": doc.value,
+        "value": "arsenal",
         "changed": "no"
       }, function (err, docUpdate) {
       });
