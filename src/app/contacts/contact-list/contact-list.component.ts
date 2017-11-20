@@ -106,6 +106,13 @@ export class ContactListComponent implements OnInit {
     this.contactService.showManchester();
   }
 
+  addScoreArsenal(){
+    this.contactService.addScoreArsenal();
+  }
+  addScoreEvertone(){
+    this.contactService.addScoreEvertone();
+  }
+
   updateContact = (contact: Contact) => {
     var idx = this.getIndexOfContact(contact._id);
     if (idx !== -1) {

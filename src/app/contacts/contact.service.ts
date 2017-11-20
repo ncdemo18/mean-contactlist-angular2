@@ -88,6 +88,15 @@ export class ContactService {
       return this.http.get("/api/dashboard/footbal/manchester",function (req, res) {
       }).toPromise()
     }
+    addScoreArsenal(): Promise<any> {
+      return this.http.get("/api/dashboard/footbal/arsenal/add",function (req, res) {
+      }).toPromise()
+    }
+
+    addScoreEvertone(): Promise<any> {
+      return this.http.get("/api/dashboard/footbal/evertone/add",function (req, res) {
+      }).toPromise()
+    }
 
     private handleError (error: any): Promise<any> {
       let errMsg = (error.message) ? error.message :

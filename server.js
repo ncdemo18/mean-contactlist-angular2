@@ -331,3 +331,46 @@ app.get("/api/dashboard/footbal", function (req, res) {
     }
   });
 });
+app.get("/api/dashboard/footbal/evertone/add", function (req, res) {
+  db.collection("score").findOneAndUpdate({"key": "score"}, {
+    "key": "score",
+    "value": "evertone",
+    "changed": "yes"
+  }, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+
+app.get("/api/dashboard/footbal/arsenal/add", function (req, res) {
+  db.collection("score").findOneAndUpdate({"key": "score"}, {
+    "key": "score",
+    "value": "arsenal",
+    "changed": "yes"
+  }, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+
+app.get("/api/dashboard/footbal/score", function (req, res) {
+  db.collection("score").findOne({"key": "score"}, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Key equals NO");
+    } else {
+      db.collection("score").findOneAndUpdate({"key": "score"}, {
+        "key": "footbal",
+        "value": doc.value,
+        "changed": "no"
+      }, function (err, docUpdate) {
+      });
+      res.status(200).json(doc);
+    }
+  });
+});
