@@ -73,6 +73,18 @@ export class ContactDetailsComponent {
   addScoreEvertone(){
     this.contactService.addScoreEvertone();
   }
+  romeLocation(){
+    this.contactService.romeLocation();
+  }
+  londonLocation(){
+    this.contactService.londonLocation();
+  }
+  dubaiLocation(){
+    this.contactService.dubaiLocation();
+  }
+  qatarLocation(){
+    this.contactService.qatarLocation();
+  }
 
   deleteContact(contactId: String): void {
     this.contactService.deleteContact(contactId).then((deletedContactId: String) => {

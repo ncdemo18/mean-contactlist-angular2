@@ -374,3 +374,61 @@ app.get("/api/dashboard/footbal/score", function (req, res) {
     }
   });
 });
+
+app.get("/api/location/london", function (req, res) {
+  db.collection("location").findOneAndUpdate({"key": "location"}, {
+    "key": "location",
+    "value": "london"
+  }, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+app.get("/api/location/rome", function (req, res) {
+  db.collection("location").findOneAndUpdate({"key": "location"}, {
+    "key": "location",
+    "value": "rome"
+  }, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+app.get("/api/location/dubai", function (req, res) {
+  db.collection("location").findOneAndUpdate({"key": "location"}, {
+    "key": "location",
+    "value": "dubai"
+  }, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+app.get("/api/location/qatar", function (req, res) {
+  db.collection("location").findOneAndUpdate({"key": "location"}, {
+    "key": "location",
+    "value": "qatar"
+  }, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+app.get("/api/location/get", function (req, res) {
+  db.collection("location").findOne({"key":"location"}, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Failed to get contact");
+    } else {
+      res.status(200).json(doc);
+    }
+  });
+});

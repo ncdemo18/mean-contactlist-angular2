@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Contact } from '../contact';
-import { ContactService } from '../contact.service';
-import { ContactDetailsComponent } from '../contact-details/contact-details.component';
+import {Component, OnInit} from '@angular/core';
+import {Contact} from '../contact';
+import {ContactService} from '../contact.service';
+import {ContactDetailsComponent} from '../contact-details/contact-details.component';
 
 @Component({
   selector: 'contact-list',
@@ -15,10 +15,11 @@ export class ContactListComponent implements OnInit {
   contacts: Contact[]
   selectedContact: Contact
 
-  constructor(private contactService: ContactService) { }
+  constructor(private contactService: ContactService) {
+  }
 
   ngOnInit() {
-     this.contactService
+    this.contactService
       .getContacts()
       .then((contacts: Contact[]) => {
         this.contacts = contacts.map((contact) => {
@@ -66,7 +67,7 @@ export class ContactListComponent implements OnInit {
     return this.contacts;
   }
 
-  clearAll(){
+  clearAll() {
     this.contactService.clear();
   }
 
@@ -86,10 +87,11 @@ export class ContactListComponent implements OnInit {
     this.contactService.openStepSam(step);
   }
 
-  setLowQuality(){
+  setLowQuality() {
     this.contactService.setLowQuality();
   }
-  setHdQuality(){
+
+  setHdQuality() {
     this.contactService.setHdQuality();
   }
 
@@ -99,18 +101,37 @@ export class ContactListComponent implements OnInit {
     return this.contacts;
   }
 
-  showArsenal(){
+  showArsenal() {
     this.contactService.showArsenal();
   }
-  showManchester(){
+
+  showManchester() {
     this.contactService.showManchester();
   }
 
-  addScoreArsenal(){
+  addScoreArsenal() {
     this.contactService.addScoreArsenal();
   }
-  addScoreEvertone(){
+
+
+  addScoreEvertone() {
     this.contactService.addScoreEvertone();
+  }
+
+  londonLocation() {
+    this.contactService.londonLocation();
+  }
+
+  romeLocation() {
+    this.contactService.romeLocation();
+  }
+
+  dubaiLocation() {
+    this.contactService.dubaiLocation();
+  }
+
+  qatarLocation() {
+    this.contactService.qatarLocation();
   }
 
   updateContact = (contact: Contact) => {
