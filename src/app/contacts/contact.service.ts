@@ -60,6 +60,15 @@ export class ContactService {
     }).toPromise()
   }
 
+  nextStepAndrew(): Promise<any> {
+    return this.http.get('api/dashboard/next/push/Andrew', function (req, res) {
+      }).toPromise()
+  }
+
+  openStepAndrew(step): Promise<any> {
+    return this.http.get("/api/dashboard/step/push/Andrew/" + step, function (req, res) {
+    }).toPromise()
+  }
 
   nextStepRicky(): Promise<any> {
     return this.http.get("/api/dashboard/next/push/Ricky", function (req, res) {

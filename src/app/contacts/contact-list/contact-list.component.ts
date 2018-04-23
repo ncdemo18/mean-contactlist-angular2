@@ -79,12 +79,20 @@ export class ContactListComponent implements OnInit {
     this.contactService.nextStepRicky();
   }
 
+  nextStepAndrew(): void {
+    this.contactService.nextStepAndrew();
+  }
+
   openStepRicky(step): void {
     this.contactService.openStepRicky(step);
   }
 
   openStepSam(step): void {
     this.contactService.openStepSam(step);
+  }
+
+  openStepAndrew(step): void {
+    this.contactService.openStepAndrew(step);
   }
 
   setLowQuality() {

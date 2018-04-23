@@ -123,6 +123,25 @@ app.get("/api/clear", function (req, res) {
   })
 });
 
+app.get("/api/dashboard/next/Andrew", function (req, res) {
+  db.collection("pages_andrew").findOne({"key": "yes"}, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Key equals NO");
+    } else {
+      if (doc !== null) {
+        if (doc.key === "yes") {
+          db.collection("pages_sam").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
+            if (err) {
+              handleError(res, err.message, "Failed to create new key.");
+            }
+          });
+        }
+      }
+      res.status(200).json(doc);
+    }
+  });
+});
+
 app.get("/api/dashboard/next/Sam", function (req, res) {
   db.collection("pages_sam").findOne({"key": "yes"}, function (err, doc) {
     if (err) {
@@ -161,9 +180,33 @@ app.get("/api/dashboard/next/Ricky", function (req, res) {
   });
 });
 
+app.get("/api/dashboard/next/push/Andrew/", function (req, res) {
+  db.collection("pages_andrew").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+
 
 app.get("/api/dashboard/next/push/Sam/", function (req, res) {
   db.collection("pages_sam").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+
+app.get("/api/dashboard/step/push/Andrew/:idStep", function (req, res) {
+  db.collection("steps_andrew").findOneAndUpdate({"key": "steps"}, {
+    "key": "steps",
+    "value": req.params.idStep,
+    "changed": "yes"
+  }, function (err, docUpdate) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
     } else {
@@ -209,7 +252,21 @@ app.get("/api/dashboard/step/push/Ricky/:idStep", function (req, res) {
     }
   });
 });
-
+app.get("/api/dashboard/step/get/Andrew", function (req, res) {
+  db.collection("steps_andrew").findOne({"key": "steps"}, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Key equals NO");
+    } else {
+      db.collection("steps_sam").findOneAndUpdate({"key": "steps"}, {
+        "key": "steps",
+        "value": doc.value,
+        "changed": "no"
+      }, function (err, docUpdate) {
+      });
+      res.status(200).json(doc);
+    }
+  });
+});
 app.get("/api/dashboard/step/get/Sam", function (req, res) {
   db.collection("steps_sam").findOne({"key": "steps"}, function (err, doc) {
     if (err) {
