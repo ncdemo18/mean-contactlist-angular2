@@ -257,7 +257,7 @@ app.get("/api/dashboard/step/get/Andrew", function (req, res) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
     } else {
-      db.collection("steps_sam").findOneAndUpdate({"key": "steps"}, {
+      db.collection("steps_andrew").findOneAndUpdate({"key": "steps"}, {
         "key": "steps",
         "value": doc.value,
         "changed": "no"
