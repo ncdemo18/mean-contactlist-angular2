@@ -130,7 +130,25 @@ app.get("/api/dashboard/next/Andrew", function (req, res) {
     } else {
       if (doc !== null) {
         if (doc.key === "yes") {
-          db.collection("pages_sam").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
+          db.collection("pages_andrew").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
+            if (err) {
+              handleError(res, err.message, "Failed to create new key.");
+            }
+          });
+        }
+      }
+      res.status(200).json(doc);
+    }
+  });
+});
+app.get("/api/dashboard/next/Vodafone", function (req, res) {
+  db.collection("pages_vodafone").findOne({"key": "yes"}, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Key equals NO");
+    } else {
+      if (doc !== null) {
+        if (doc.key === "yes") {
+          db.collection("pages_vodafone").findOneAndUpdate({_id: doc._id}, {"key": "no"}, function (err, docUpdate) {
             if (err) {
               handleError(res, err.message, "Failed to create new key.");
             }
@@ -280,6 +298,21 @@ app.get("/api/dashboard/step/get/Andrew", function (req, res) {
       handleError(res, err.message, "Key equals NO");
     } else {
       db.collection("steps_andrew").findOneAndUpdate({"key": "steps"}, {
+        "key": "steps",
+        "value": doc.value,
+        "changed": "no"
+      }, function (err, docUpdate) {
+      });
+      res.status(200).json(doc);
+    }
+  });
+});
+app.get("/api/dashboard/step/get/Vodafone", function (req, res) {
+  db.collection("steps_vodafone").findOne({"key": "steps"}, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "Key equals NO");
+    } else {
+      db.collection("steps_vodafone").findOneAndUpdate({"key": "steps"}, {
         "key": "steps",
         "value": doc.value,
         "changed": "no"
