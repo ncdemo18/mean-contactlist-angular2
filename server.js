@@ -189,6 +189,15 @@ app.get("/api/dashboard/next/push/Andrew/", function (req, res) {
     }
   });
 });
+app.get("/api/dashboard/next/push/Vodafone/", function (req, res) {
+  db.collection("pages_vodafone").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
 
 
 app.get("/api/dashboard/next/push/Sam/", function (req, res) {
@@ -203,6 +212,19 @@ app.get("/api/dashboard/next/push/Sam/", function (req, res) {
 
 app.get("/api/dashboard/step/push/Andrew/:idStep", function (req, res) {
   db.collection("steps_andrew").findOneAndUpdate({"key": "steps"}, {
+    "key": "steps",
+    "value": req.params.idStep,
+    "changed": "yes"
+  }, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+app.get("/api/dashboard/step/push/Vodafone/:idStep", function (req, res) {
+  db.collection("steps_vodafone").findOneAndUpdate({"key": "steps"}, {
     "key": "steps",
     "value": req.params.idStep,
     "changed": "yes"
