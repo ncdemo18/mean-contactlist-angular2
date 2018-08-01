@@ -337,7 +337,7 @@ app.get("/api/dashboard/step/get/Sam", function (req, res) {
     }
   });
 });
-app.get("/api/dashboard/step/get/Ricky", function (req, res) {
+app.get("/api/dashboard/step/get/Ricky1", function (req, res) {
   db.collection("steps_ricky").findOne({"key": "steps"}, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
