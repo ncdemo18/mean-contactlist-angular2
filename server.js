@@ -179,7 +179,7 @@ app.get("/api/dashboard/next/Sam", function (req, res) {
   });
 });
 
-app.get("/api/dashboard/next/Ricky", function (req, res) {
+app.get("/api/dashboard/next/Ricky1", function (req, res) {
   db.collection("pages_ricky").findOne({"key": "yes"}, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
