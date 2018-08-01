@@ -79,7 +79,7 @@ export class ContactService {
   }
 
   nextStepRicky(): Promise<any> {
-    return this.http.get("/api/dashboard/next/push/Ricky", function (req, res) {
+    return this.http.get("/api/dashboard/next/push/Ricky1", function (req, res) {
     }).toPromise()
   }
 

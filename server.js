@@ -269,7 +269,7 @@ app.get("/api/dashboard/step/push/Sam/:idStep", function (req, res) {
   });
 });
 
-app.get("/api/dashboard/next/push/Ricky/", function (req, res) {
+app.get("/api/dashboard/next/push/Ricky1/", function (req, res) {
   db.collection("pages_ricky").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
