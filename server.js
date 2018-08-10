@@ -24,6 +24,7 @@ var db;
 mongodb.MongoClient.connect(process.env.MONGODB_URI, function (err, database) {
   if (err) {
     console.log(err);
+    console.log("Can't connect to MongoDB");
     process.exit(1);
   }
 
