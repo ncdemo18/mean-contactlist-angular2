@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
-``
+
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
@@ -180,7 +180,7 @@ app.get("/api/dashboard/next/Sam", function (req, res) {
   });
 });
 
-app.get("/api/dashboard/next/Ricky1", function (req, res) {
+app.get("/api/dashboard/next/Ricky", function (req, res) {
   db.collection("pages_ricky").findOne({"key": "yes"}, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Key equals NO");
@@ -270,8 +270,28 @@ app.get("/api/dashboard/step/push/Sam/:idStep", function (req, res) {
   });
 });
 
-app.get("/api/dashboard/next/push/Ricky1/", function (req, res) {
+app.get("/api/dashboard/next/push/Ricky/", function (req, res) {
   db.collection("pages_ricky").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+
+app.get("/api/dashboard/clear/session/set/flag/yes/Ricky", function (req, res) {
+  db.collection("clear_ricky").findOneAndUpdate({"cleared": "no"}, {"cleared": "yes"}, function (err, docUpdate) {
+    if (err) {
+      handleError(res, err.message, "Failed to create new key.");
+    } else {
+      res.status(200).json(docUpdate);
+    }
+  });
+});
+
+app.get("/api/dashboard/clear/session/set/flag/no/Ricky", function (req, res) {
+  db.collection("clear_ricky").findOneAndUpdate({"cleared": "yes"}, {"cleared": "no"}, function (err, docUpdate) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
     } else {
@@ -339,7 +359,7 @@ app.get("/api/dashboard/step/get/Sam", function (req, res) {
     }
   });
 });
-app.get("/api/dashboard/step/get/Ricky1", function (req, res) {
+app.get("/api/dashboard/step/get/Ricky", function (req, res) {
   db.collection("steps_ricky").findOne({"key": "steps"}, function (err, doc) {
     if (err) {
       handleError(res, err.message, "Key equals NO");

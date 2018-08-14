@@ -79,7 +79,7 @@ export class ContactService {
   }
 
   nextStepRicky(): Promise<any> {
-    return this.http.get("/api/dashboard/next/push/Ricky1", function (req, res) {
+    return this.http.get("/api/dashboard/next/push/Ricky", function (req, res) {
     }).toPromise()
   }
 
@@ -88,10 +88,15 @@ export class ContactService {
     }).toPromise()
   }
 
-  clearRickySessions(): Promise<any> {
-      return this.http.get("/api/dashboard/clear/session/Ricky", function (req, res) {
-      }).toPromise()
-    }
+  clearRickySessionsYes(): Promise<any> {
+    return this.http.get("/api/dashboard/clear/session/set/flag/yes/Ricky", function (req, res) {
+    }).toPromise()
+  }
+
+  clearRickySessionsNo(): Promise<any> {
+    return this.http.get("/api/dashboard/clear/session/set/flag/no/Ricky", function (req, res) {
+    }).toPromise()
+  }
 
   setLowQuality(): Promise<any> {
     return this.http.get("/api/dashboard/video/setLow", function (req, res) {

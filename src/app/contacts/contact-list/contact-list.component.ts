@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Contact} from '../contact';
 import {ContactService} from '../contact.service';
 import {ContactDetailsComponent} from '../contact-details/contact-details.component';
+import {delay} from "q";
 
 @Component({
   selector: 'contact-list',
@@ -90,9 +91,11 @@ export class ContactListComponent implements OnInit {
     this.contactService.openStepRicky(step);
   }
 
-   clearRickySessions(): void {
-      this.contactService.clearRickySessions();
-    }
+  clearRickySessions(): void {
+     this.contactService.clearRickySessionsYes();
+     delay(5000);
+     this.contactService.clearRickySessionsNo();
+  }
 
 
   openStepSam(step): void {
