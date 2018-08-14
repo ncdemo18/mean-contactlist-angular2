@@ -92,7 +92,7 @@ export class ContactListComponent implements OnInit {
   }
 
   clearRickySessions(): void {
-     this.contactService.clearRickySessionsYes();
+     this.contactService.clearRickySessions();
   }
 
 

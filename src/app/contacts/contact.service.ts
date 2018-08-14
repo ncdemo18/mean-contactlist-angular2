@@ -88,14 +88,9 @@ export class ContactService {
     }).toPromise()
   }
 
-  clearRickySessionsYes(): Promise<any> {
-    return this.http.get("/api/dashboard/clear/session/set/flag/yes/Ricky", function (req, res) {
+  clearRickySessions(): Promise<any> {
+    return this.http.get("/api/dashboard/clear/session/Ricky", function (req, res) {
     }).toPromise();
-  }
-
-  clearRickySessionsNo(): Promise<any> {
-    return this.http.get("/api/dashboard/clear/session/set/flag/no/Ricky", function (req, res) {
-    }).toPromise()
   }
 
   setLowQuality(): Promise<any> {

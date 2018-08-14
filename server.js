@@ -280,24 +280,18 @@ app.get("/api/dashboard/next/push/Ricky/", function (req, res) {
   });
 });
 
-app.get("/api/dashboard/clear/session/set/flag/yes/Ricky", function (req, res) {
+app.get("/api/dashboard/clear/session/Ricky", function (req, res) {
+  //change flag to YES
   db.collection("clear_ricky").findOneAndUpdate({"cleared": "no"}, {"cleared": "yes"}, function (err, docUpdate) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
     } else {
+      //timeout 5 sec and make flag NO
       setTimeout(function () {
         db.collection("clear_ricky").findOneAndUpdate({"cleared": "yes"}, {"cleared": "no"}, function (err, docUpdate) {});
       }, 5000);
-      res.status(200).json(docUpdate);
-    }
-  });
-});
 
-app.get("/api/dashboard/clear/session/set/flag/no/Ricky", function (req, res) {
-  db.collection("clear_ricky").findOneAndUpdate({"cleared": "yes"}, {"cleared": "no"}, function (err, docUpdate) {
-    if (err) {
-      handleError(res, err.message, "Failed to create new key.");
-    } else {
+      //result
       res.status(200).json(docUpdate);
     }
   });
