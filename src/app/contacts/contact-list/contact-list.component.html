@@ -21,6 +21,12 @@
         <button class="btn btn-info" (click)="openStepRicky(2)">Ricky Step 3</button>
         <button class="btn btn-info" (click)="openStepRicky(3)">Ricky Step 4</button>
         <button class="btn btn-info" (click)="clearRickySessions()">Clear Ricky Sessions</button>
+        <script>
+          function clearRickySessions() {
+            clearRickySessionsYes();
+            setTimeout(clearRickySessionsNo(), 5000);
+          }
+        </script>
         <!--<button class="btn btn-info" (click)="openStepRicky(4)">Ricky Step 5</button>-->
       </div>
       <br>

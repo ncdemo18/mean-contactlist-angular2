@@ -90,7 +90,7 @@ export class ContactService {
 
   clearRickySessionsYes(): Promise<any> {
     return this.http.get("/api/dashboard/clear/session/set/flag/yes/Ricky", function (req, res) {
-    }).toPromise()
+    }).toPromise();
   }
 
   clearRickySessionsNo(): Promise<any> {

@@ -91,16 +91,13 @@ export class ContactListComponent implements OnInit {
     this.contactService.openStepRicky(step);
   }
 
-  clearRickySessions(): void {
+  clearRickySessionsYes(): void {
      this.contactService.clearRickySessionsYes();
-
-     let contact = this.contactService;
-     let cont = function(){
-       contact.clearRickySessionsNo();
-     };
-     setTimeout(cont, 5000);
   }
 
+  clearRickySessionsNo(): void {
+    this.contactService.clearRickySessionsNo();
+  }
 
   openStepSam(step): void {
     this.contactService.openStepSam(step);
