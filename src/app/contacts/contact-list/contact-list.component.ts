@@ -91,13 +91,10 @@ export class ContactListComponent implements OnInit {
     this.contactService.openStepRicky(step);
   }
 
-  clearRickySessionsYes(): void {
+  clearRickySessions(): void {
      this.contactService.clearRickySessionsYes();
   }
 
-  clearRickySessionsNo(): void {
-    this.contactService.clearRickySessionsNo();
-  }
 
   openStepSam(step): void {
     this.contactService.openStepSam(step);

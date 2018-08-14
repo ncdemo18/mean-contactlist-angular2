@@ -285,6 +285,15 @@ app.get("/api/dashboard/clear/session/set/flag/yes/Ricky", function (req, res) {
     if (err) {
       handleError(res, err.message, "Failed to create new key.");
     } else {
+      setTimeout(function () {
+        db.collection("clear_ricky").findOneAndUpdate({"cleared": "yes"}, {"cleared": "no"}, function (err, docUpdate) {
+          if (err) {
+            handleError(res, err.message, "Failed to create new key.");
+          } else {
+            res.status(200).json(docUpdate);
+          }
+        });
+      }, 5000);
       res.status(200).json(docUpdate);
     }
   });
