@@ -93,7 +93,12 @@ export class ContactListComponent implements OnInit {
 
   clearRickySessions(): void {
      this.contactService.clearRickySessionsYes();
-     setTimeout(function(){this.contactService.clearRickySessionsNo()}, 5000);
+
+     let contact = this.contactService;
+     let cont = function(){
+       contact.clearRickySessionsNo();
+     };
+     setTimeout(cont, 5000);
   }
 
 
