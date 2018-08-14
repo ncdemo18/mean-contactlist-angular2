@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 // Create link to Angular build directory
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
-
+``
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
@@ -293,6 +293,7 @@ app.get("/api/dashboard/step/push/Ricky/:idStep", function (req, res) {
     }
   });
 });
+
 app.get("/api/dashboard/step/get/Andrew", function (req, res) {
   db.collection("steps_andrew").findOne({"key": "steps"}, function (err, doc) {
     if (err) {

@@ -88,6 +88,11 @@ export class ContactService {
     }).toPromise()
   }
 
+  clearRickySessions(): Promise<any> {
+      return this.http.get("/api/dashboard/clear/session/Ricky", function (req, res) {
+      }).toPromise()
+    }
+
   setLowQuality(): Promise<any> {
     return this.http.get("/api/dashboard/video/setLow", function (req, res) {
     }).toPromise()
