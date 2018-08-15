@@ -142,6 +142,7 @@ app.get("/api/dashboard/next/Andrew", function (req, res) {
     }
   });
 });
+
 app.get("/api/dashboard/next/Vodafone", function (req, res) {
   db.collection("pages_vodafone").findOne({"key": "yes"}, function (err, doc) {
     if (err) {
@@ -200,11 +201,18 @@ app.get("/api/dashboard/next/Ricky", function (req, res) {
 });
 
 app.get("/api/dashboard/closed/session/Ricky", function (req, res) {
+  console.log("From client: get: /api/dashboard/closed/session/Ricky");
   db.collection("clear_ricky").findOne({"cleared": "yes"}, function (err, doc) {
+    console.log("From client: in clear_ricky find: cleared = yes");
     if (err) {
+      console.log("From client: error!");
+      console.log("From client: My res: " + res);
       handleError(res, err.message, "\"Cleared\" field equals NO");
     } else {
+      console.log("From client: Success! Set res.status = 200");
+
       res.status(200).json(doc);
+      console.log("From client: My res: " + res);
     }
   });
 });
@@ -218,6 +226,7 @@ app.get("/api/dashboard/next/push/Andrew/", function (req, res) {
     }
   });
 });
+
 app.get("/api/dashboard/next/push/Vodafone/", function (req, res) {
   db.collection("pages_vodafone").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
     if (err) {
@@ -227,7 +236,6 @@ app.get("/api/dashboard/next/push/Vodafone/", function (req, res) {
     }
   });
 });
-
 
 app.get("/api/dashboard/next/push/Sam/", function (req, res) {
   db.collection("pages_sam").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
@@ -252,6 +260,7 @@ app.get("/api/dashboard/step/push/Andrew/:idStep", function (req, res) {
     }
   });
 });
+
 app.get("/api/dashboard/step/push/Vodafone/:idStep", function (req, res) {
   db.collection("steps_vodafone").findOneAndUpdate({"key": "steps"}, {
     "key": "steps",
@@ -292,22 +301,27 @@ app.get("/api/dashboard/next/push/Ricky/", function (req, res) {
 
 app.get("/api/dashboard/clear/session/Ricky", function (req, res) {
   //change flag to YES
-  console.log("get: /api/dashboard/clear/session/Ricky");
+  console.log("From control-panel: get: /api/dashboard/clear/session/Ricky");
   db.collection("clear_ricky").findOneAndUpdate({"cleared": "no"}, {"cleared": "yes"}, function (err, docUpdate) {
     console.log("findOneAndUpdate in clear_ricky: cleared: no -> yes");
     if (err) {
-      console.log("error!");
+      console.log("From control-panel: error!");
+      console.log("From control-panel: My res " + res);
       handleError(res, err.message, "Failed to create new key.");
     } else {
       //timeout 5 sec and make flag NO
-      console.log("before setTimeout ");
+      console.log("From control-panel: before setTimeout ");
       setTimeout(function () {
-      console.log("after 5 sec, before findOneAndUpdate in clear_ricky: yes -> no");
+        console.log("From control-panel: after 5 sec, start update in db");
         db.collection("clear_ricky").findOneAndUpdate({"cleared": "yes"}, {"cleared": "no"}, function (err, docUpdate) {});
+        console.log("From control-panel: findOneAndUpdate in clear_ricky: yes -> no");
       }, 5000);
+
+      console.log("From control-panel: after setTimeout");
 
       //result
       res.status(200).json(docUpdate);
+      console.log("From control-panel: My res " + res);
     }
   });
 });
@@ -341,6 +355,7 @@ app.get("/api/dashboard/step/get/Andrew", function (req, res) {
     }
   });
 });
+
 app.get("/api/dashboard/step/get/Vodafone", function (req, res) {
   db.collection("steps_vodafone").findOne({"key": "steps"}, function (err, doc) {
     if (err) {
@@ -356,6 +371,7 @@ app.get("/api/dashboard/step/get/Vodafone", function (req, res) {
     }
   });
 });
+
 app.get("/api/dashboard/step/get/Sam", function (req, res) {
   db.collection("steps_sam").findOne({"key": "steps"}, function (err, doc) {
     if (err) {
@@ -371,6 +387,7 @@ app.get("/api/dashboard/step/get/Sam", function (req, res) {
     }
   });
 });
+
 app.get("/api/dashboard/step/get/Ricky", function (req, res) {
   db.collection("steps_ricky").findOne({"key": "steps"}, function (err, doc) {
     if (err) {
@@ -400,6 +417,7 @@ app.get("/api/dashboard/video/setLow", function (req, res) {
     }
   });
 });
+
 app.get("/api/dashboard/video/setHd", function (req, res) {
   db.collection("video").findOneAndUpdate({"key": "quality"}, {
     "key": "quality",
@@ -477,6 +495,7 @@ app.get("/api/dashboard/footbal", function (req, res) {
     }
   });
 });
+
 app.get("/api/dashboard/footbal/evertone/add", function (req, res) {
   db.collection("score").findOneAndUpdate({"key": "score"}, {
     "key": "score",
@@ -533,6 +552,7 @@ app.get("/api/location/london", function (req, res) {
     }
   });
 });
+
 app.get("/api/location/rome", function (req, res) {
   db.collection("location").findOneAndUpdate({"key": "location"}, {
     "key": "location",
@@ -545,6 +565,7 @@ app.get("/api/location/rome", function (req, res) {
     }
   });
 });
+
 app.get("/api/location/dubai", function (req, res) {
   db.collection("location").findOneAndUpdate({"key": "location"}, {
     "key": "location",
@@ -557,6 +578,7 @@ app.get("/api/location/dubai", function (req, res) {
     }
   });
 });
+
 app.get("/api/location/qatar", function (req, res) {
   db.collection("location").findOneAndUpdate({"key": "location"}, {
     "key": "location",
@@ -569,6 +591,7 @@ app.get("/api/location/qatar", function (req, res) {
     }
   });
 });
+
 app.get("/api/location/get", function (req, res) {
   db.collection("location").findOne({"key":"location"}, function (err, doc) {
     if (err) {
