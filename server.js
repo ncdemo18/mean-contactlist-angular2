@@ -292,12 +292,17 @@ app.get("/api/dashboard/next/push/Ricky/", function (req, res) {
 
 app.get("/api/dashboard/clear/session/Ricky", function (req, res) {
   //change flag to YES
+  console.log("get: /api/dashboard/clear/session/Ricky");
   db.collection("clear_ricky").findOneAndUpdate({"cleared": "no"}, {"cleared": "yes"}, function (err, docUpdate) {
+    console.log("findOneAndUpdate in clear_ricky: cleared: no -> yes");
     if (err) {
+      console.log("error!");
       handleError(res, err.message, "Failed to create new key.");
     } else {
       //timeout 5 sec and make flag NO
+      console.log("before setTimeout ");
       setTimeout(function () {
+      console.log("after 5 sec, before findOneAndUpdate in clear_ricky: yes -> no");
         db.collection("clear_ricky").findOneAndUpdate({"cleared": "yes"}, {"cleared": "no"}, function (err, docUpdate) {});
       }, 5000);
 
