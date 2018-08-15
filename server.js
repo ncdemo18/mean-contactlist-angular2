@@ -199,6 +199,16 @@ app.get("/api/dashboard/next/Ricky", function (req, res) {
   });
 });
 
+app.get("/api/dashboard/closed/session/Ricky", function (req, res) {
+  db.collection("clear_ricky").findOne({"cleared": "yes"}, function (err, doc) {
+    if (err) {
+      handleError(res, err.message, "\"Cleared\" field equals NO");
+    } else {
+      res.status(200).json(doc);
+    }
+  });
+});
+
 app.get("/api/dashboard/next/push/Andrew/", function (req, res) {
   db.collection("pages_andrew").findOneAndUpdate({"key": "no"}, {"key": "yes"}, function (err, docUpdate) {
     if (err) {
